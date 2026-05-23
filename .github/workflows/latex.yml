@@ -1,28 +1,38 @@
-name: Build LaTeX
-on: 
+name: Deploy PDF
+
+on:
   push:
-    branches:
-      - main
+    branches: [ master ]
   pull_request:
-    branches:
-      - main
+    branches: [ master ]
+
+  workflow_dispatch:
+
 jobs:
-  build_latex:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v4
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
-      - name: Move pdf
+      - name: Copy
         run: |
-          mkdir ./output
-          mv main.pdf ./output/main.pdf
-      - name: Publish to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+          mkdir out
+          cp ./main.pdf ./out/main.pdf
+      - uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
-          
+          name: maiin
+          path: out/main.pdf
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          CLEAN: true
+          SINGLE_COMMIT: true
+          FOLDER: out
+          GIT_CONFIG_NAME: Caio-GV
+          GIT_CONFIG_EMAIL: caiogiroldovalerio@gmail.com
