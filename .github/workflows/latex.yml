@@ -1,5 +1,6 @@
-on: [push]
 
+name: Build PDF
+on: [push]
 jobs:
   latex-job:
     runs-on: ubuntu-latest
