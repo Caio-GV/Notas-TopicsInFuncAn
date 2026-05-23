@@ -1,0 +1,26 @@
+\newcommand\tsub{\stackrel{\mathclap{\tiny\mbox{$t=\frac{1}{x}$}}}{=}}
+
+
+\chapter{}
+
+\section{Distribuições e Funções Teste}
+\begin{definition}
+    $\mathfrak{D}(\mathbb{R})$ é o conjunto das funções $\mathcal{C}^\infty$ com suporte compacto.
+\end{definition}
+
+\begin{lemma}
+    Seja $f:\mathbb{R}\to\mathbb{R}$ definida por
+    \[f(x) = \begin{cases}
+        e^{\frac{-a^2}{a^2-x^2}} & \text{se } |x|<a\\
+        0 & \text{se } |x|\geq a
+    \end{cases}\]
+    Então $f$ é $\mathcal{C}^\infty$ e tem suporte compacto. Logo $f\in\mathfrak{D}(\mathbb{R})$.
+\end{lemma}
+\begin{proof}
+    Para $|x|<a$ e $|x|>a$, é trivial que $f$ é $\mathcal{C}^\infty$. Agora, para $|x|=a$ temos que verificar pelos limites laterais:
+    \[\lim_{x \to 0^-}{\frac{f(x)-f(0)}{x-0}}=\lim_{x \to 0^-}{\frac{0}{x}}=0\] 
+    \[\lim_{x \to 0^+}{\frac{f(x)-f(0)}{x-0}}=\lim_{x \to 0^-}{\frac{e^{\frac{-a^2}{a^2-x^2}}}{x}}\stackrel{\frac{1}{x-a}\to t}{=}\lim_{t \to+\infty}{\frac{t}{e^\frac{ta^2}{2a+\frac{1}{t}}}}\] 
+    Sendo, $g(t)=\frac{ta^2}{2a+\frac{1}{t}}$ e aplicando a regra de L'Hopital:
+    \[\lim_{t \to+\infty}{\frac{t}{e^g(t)}}\stackrel{\text{L.H.}}{=}\lim_{t \to+\infty}{\frac{1}{e^{g(t)}(g'(t))}=0}\] 
+    Portanto, $f$ é $\mathcal{C}^\infty$. Como $f\neq0$ para todo $x$ tal que $|x|>a$, então $\supp(f)=[-a,a]$, ou seja, é compacto.  
+\end{proof}
