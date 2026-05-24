@@ -1,6 +1,3 @@
-\newcommand\tsub{\stackrel{\mathclap{\tiny\mbox{$t=\frac{1}{x}$}}}{=}}
-
-
 \chapter{}
 
 \section{Distribuições e Funções Teste}
@@ -22,5 +19,56 @@
     \[\lim_{x \to 0^+}{\frac{f(x)-f(0)}{x-0}}=\lim_{x \to 0^-}{\frac{e^{\frac{-a^2}{a^2-x^2}}}{x}}\stackrel{\frac{1}{x-a}\to t}{=}\lim_{t \to+\infty}{\frac{t}{e^\frac{ta^2}{2a+\frac{1}{t}}}}\] 
     Sendo, $g(t)=\frac{ta^2}{2a+\frac{1}{t}}$ e aplicando a regra de L'Hopital:
     \[\lim_{t \to+\infty}{\frac{t}{e^g(t)}}\stackrel{\text{L.H.}}{=}\lim_{t \to+\infty}{\frac{1}{e^{g(t)}(g'(t))}=0}\] 
-    Portanto, $f$ é $\mathcal{C}^\infty$. Como $f\neq0$ para todo $x$ tal que $|x|>a$, então $\supp(f)=[-a,a]$, ou seja, é compacto.  
+    Portanto, $f$ é $\mathcal{C}^\infty$. Como $f\neq0$ para todo $x$ tal que $|x|<a$, então $\supp(f)=[-a,a]$, ou seja, é compacto.  
 \end{proof}
+
+Work in progress.
+
+\section{Topologia de $\mathfrak{D}(\Omega)$}  
+
+Para descrever a convergência de sequências em $\mathfrak{D}(\Omega)$ precisamos atribuir uma topologia ao conjunto. Primeiro, vamos construir uma \textit{inductive limit topology} (topologia do limite indutivo(?))
+
+\subsection{Inductive limit topology}
+
+Seja ${X_k:k\geq1}$ uma família de espaços topológicos. Assuma que existam mapas continuos $f_kl:X_k\to X_l$ para todo $k\leq l$, tal que, para $l\leq m$:
+
+\[f_{lm}\circ f_{kl} = f_{km}\]
+
+Se $x\in X_k$, dizemos que $f_{kl}(x)$ é o sucessor de $x$ em $X_l$. Agora definiremos um conjunto X do seguinte modo:
+
+\[X=\bigcup_{k=1}^{n}X_k\]
+
+E em $X$, a seguinte relação $\sim$, para $x\in X_k$, $y\in X_l$:
+
+\[x\sim y\Leftrightarrow \exists p: f_{kp}(x) = f_{lp}(y)\] 
+
+Ou seja, $x\sim y$ se y é sucessor de x. Vamos provar que $\sim$ é uma relação de equivalência.
+\begin{proof}
+
+    Como a relação parte de uma igualdade, $x\sim x$ e $x\sim y \Rightarrow y\sim x$ são triviais. Resta só mostrar a transitividade de $\sim$, então, para $z\in X_j$:
+    \[x\sim y \Rightarrow\exists p: f_{kp}(x) = f_{lp}(y)\]
+    \[y\sim z \Rightarrow\exists q: f_{lq}(y) = f_{jq}(z)\]
+    Tomando $r \geq p,q$, pela propriedade das funções $f_{ij}$: 
+    \[f_{kr}(x)=f_{pr}(f_{kp}(x))=f_{pr}(f_{lr}(y))=f_{lr}(x)\]
+    \[f_{lr}(y)=f_{pr}(f_{lp}(y))=f_{pr}(f_{jr}(z))=f_{jr}(z)\]
+    Assim, $f_{jr}(z)=f_{lr}(x)\Rightarrow x\sim z$ e, portanto, $\sim$ é uma relação de equivalência.
+
+\end{proof}
+
+Definindo $X_{\infty}$ como a coleção de todas as classes de equivalência com respeito a relação $\sim$, temos, então, as projeções canônicas $p_k:X_k\to X_{\infty}$, que mapeiam cada ponto de $X_k$ com sua classe de equivalência (i.e. $p_k(x)=\left\{y\in X: x\sim y\right\}$). 
+
+Agora, em função da família de topologias $\mathcal{T}=\left\{\tau_k:\tau_k \text{ é topologia de } X_k\right\}$, definiremos $\tau_\infty$ como: 
+\[\tau_\infty = \left\{A\subseteq X_\infty:p_{k}^{-1}(A)\in\tau_k, \forall K\right\}\]
+Resta demostrar que $\tau_\infty$ é uma topologia de $X_\infty$:
+
+\begin{proof}
+    \begin{itemize}
+        \item $\emptyset\in\tau_k$, $\forall K\Rightarrow \emptyset\in\tau_\infty$
+        \item Como $X_k\in X\Rightarrow\forall x\in X_k$, $\exists C_k \in X_\infty$
+    \end{itemize}
+
+\end{proof}
+
+
+
+
