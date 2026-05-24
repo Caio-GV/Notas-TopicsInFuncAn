@@ -28,7 +28,6 @@ jobs:
           mv main.pdf ./output/main.pdf
 
       - name: Publish to GitHub Pages
-        # Este 'if' garante que o deploy só aconteça ao dar push na main, e não em Pull Requests
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
