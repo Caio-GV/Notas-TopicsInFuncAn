@@ -1,34 +1,28 @@
-name: Build PDF
-
-on:
+name: Build LaTeX
+on: 
   push:
     branches:
-      - main # Mude para 'master' se o seu branch principal tiver esse nome
-    paths:
-      - '**.tex'
-      - '**.bib'
-  workflow_dispatch: # Permite rodar o workflow manualmente pelo painel do GitHub
-
-permissions:
-  contents: write # Permite que o GitHub Action salve o PDF de volta no repositório
-
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout do código
+      - name: Set up Git repository
         uses: actions/checkout@v4
-
-      - name: Compilar LaTeX
+      - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          # Por padrão, ele usa o latexmk (pdfLaTeX). Caso precise de XeLaTeX or LuaLaTeX, 
-          # você pode adicionar a linha abaixo descomentada:
-          # compiler: xelatex
-
-      - name: Commit e Push do PDF para a raiz
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Move pdf
+        run: |
+          mkdir ./output
+          mv main.pdf ./output/main.pdf
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          commit_message: "docs: atualizar PDF compilado na raiz [skip ci]"
-          file_pattern: 'main.pdf'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          
