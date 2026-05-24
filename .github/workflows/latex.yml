@@ -1,39 +1,34 @@
-name: Compilar LaTeX - Notas de TFA
+name: Build PDF
 
 on:
   push:
     branches:
-      - main # Altere para 'master' caso seja o padrão do seu repositório
+      - main # Mude para 'master' se o seu branch principal tiver esse nome
     paths:
       - '**.tex'
       - '**.bib'
-  workflow_dispatch: # Permite acionar o workflow manualmente na aba Actions
+  workflow_dispatch: # Permite rodar o workflow manualmente pelo painel do GitHub
 
 permissions:
-  contents: write # Necessário para permitir que o bot faça o commit do PDF
+  contents: write # Permite que o GitHub Action salve o PDF de volta no repositório
 
 jobs:
-  build_and_push:
+  build_latex:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout do repositório
+      - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Compilar o arquivo main.tex
+      - name: Compilar LaTeX
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          # A action utiliza o TeX Live completo por padrão, então pacotes
-          # de diagramas comutativos, beamer ou fontes como newtxtext
-          # funcionarão nativamente sem precisar de instalação extra.
+          # Por padrão, ele usa o latexmk (pdfLaTeX). Caso precise de XeLaTeX or LuaLaTeX, 
+          # você pode adicionar a linha abaixo descomentada:
+          # compiler: xelatex
 
-      - name: Mover o PDF para o diretório alvo
-        run: |
-          mkdir -p Notas-TopicsInFuncAn
-          mv main.pdf Notas-TopicsInFuncAn/
-
-      - name: Fazer commit e push do PDF gerado
+      - name: Commit e Push do PDF para a raiz
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs: atualizar PDF compilado das notas [skip ci]"
-          file_pattern: 'Notas-TopicsInFuncAn/*.pdf'
+          commit_message: "docs: atualizar PDF compilado na raiz [skip ci]"
+          file_pattern: 'main.pdf'
