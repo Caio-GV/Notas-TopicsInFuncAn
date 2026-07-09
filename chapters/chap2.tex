@@ -58,7 +58,8 @@ Another useful distribution is the Dirac "$\delta$-function", which is in fact a
 These both distributions will be essential for the next sections.
 
 \section{Distributional derivatives}
-Having (2) in mind, let's build a definition of a derivative that can satisfy that equation. Let $f$ be a smooth function in $\Omega$, so:
+
+Having (2) in mind, let's build a definition of a distribution derivative that can satisfy that equation. Let $f$ be a smooth function in $\Omega$, so:
 
 \[D^{\alpha}Tf(\varphi) = D^{\alpha}\int_{\Omega}f\varphi\]
 
@@ -66,29 +67,52 @@ Now, by the dominated convergence theorem we can push the derivative inside the 
 
 \[D^{\alpha}\int_{\Omega}f\varphi = \int_{\Omega}D^{\alpha}f\varphi = (-1)^{\left\lvert\alpha\right\rvert}\int_{K}fD^\alpha\varphi\]
 
-So, we now know what we have to define $D^{\alpha}T$ as to serve our needs.
+So, we now know what we have to define $D^{\alpha}T$ as to serve our needs. We let $f$ as a smooth function just so $D^\alpha f$ has some meaning in a sense, but in general, the only condition $f$ must abide is to be locally integrable.
 
 \begin{definition}{Derivative of a distribution}{dist_derivative}
     Let $T\in\dist$, the $\alpha$ derivative of $T$ is:
-    \[D^\alpha T(\varphi) = (-1)T(D^\alpha\varphi)\]
+    \[D^\alpha T(\varphi) = (-1)^{\left\lvert\alpha \right\rvert}T(D^\alpha\varphi)\]
 \end{definition}
 
 Another important thing to note is that, for a distribution given by a function $f$, the following identity is verified:
 
-\[D^\alpha T_f(\varphi) = T_{D^\alpha f} = (-1)T_f(D^\alpha\varphi)\]
+\begin{lemma}{}{prop}
+    \[D^\alpha T_f(\varphi) = T_{D^\alpha f} = (-1)T_f(D^\alpha\varphi)\]
+\end{lemma}
 
-In addition to that, we will say that a locally integrable function $f$ has a distributional derivative if there exists a distribution $G$ such that for all $\varphi\in\testf$:
+Which was already proven before. In addition to that, we will say that a locally integrable function $f$ has a distributional derivative if there exists a distribution $G$ such that for all $\varphi\in\testf$:
 
 \[\dv{}{t}T_f(\varphi) = G(\varphi)\]
 
-So $G$ is the distributional derivative of $f$. If $G=T_g$ for some locally integrable function $g$, then we also say that $g$ is the distributional derivative of $f$. This distributional derivative is also what is called the weak derivative of $f$.
+So $G$ is the distributional derivative of $f$. If $G=T_g$ for some locally integrable function $g$, then we also say that $g$ is the distributional derivative of $f$. This distributional derivative is also what is called the weak derivative of $f$, sometimes denoted as $\partial_t f$.
 
 It should be clear that if a function has a regular derivative, its weak derivative will be the same, as the identity above will be satisfied by:
 
 \[\dv{}{t}T_f = T_{\dv{f}{t}}\]
 
 
-\begin{example}{heav}
-    Le
-    
+\begin{example}{The derivative of the Heaviside Function}{heaviside}
+    The Heaviside function is defined as:
+
+    \[
+    H(x)
+    \begin{cases}
+        1, x \geq 0\\
+        0, x < 0
+    \end{cases}
+    \]
+
+    So the distributional derivative of $H$ is the $\delta$ distribuition.
 \end{example}
+
+\begin{proof}
+    Let $\Omega\in\mathbb{R}$. As $H$ is a locally integrable function, let's evaluate the distribution given by $H$:
+
+    \[T_H(\varphi) = \int_{\Omega}H(x)\varphi(x)dx\]
+So, by taking the derivative of this distribution and using \cref{lem:prop} we get:
+    \[\dv{}{x}T_H(\varphi) = -T_H(\dv{\varphi}{x}) = -\int_{0}^{+\infty}H(x)\dv{\varphi}{x}(x)dx = \varphi(x)\Big|_{0}^{+\infty} = \varphi(0) = \delta(\varphi)\]
+Therefore, $\delta$ is the distributional derivative of the Heaviside function.
+
+\end{proof}
+
+
