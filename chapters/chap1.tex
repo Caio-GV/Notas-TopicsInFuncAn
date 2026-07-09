@@ -8,7 +8,8 @@ We will begin by studying the solution of the following equation:
     \end{equation}
 \end{tcolorbox}
 \smallskip
-This is commonly known as the inviscid Burger's equation, a simplified model for fluid mechanics, modelling one dimensional flow where $u(x,t)$ is the velocity of the particle located in $x$ at time $t$.  So, first, we are going to try to find regular solutions for this equation by the method of characteristics.\\
+This is commonly known as the inviscid Burger's equation, a simplified model for fluid mechanics, modelling one dimensional flow where $u(x,t)$ is the velocity of the particle located in $x$ at time $t$.  So, first, we are going to try to find regular solutions for this equation by the method of characteristics.
+
 Considering $u(x,t)$ to be a smooth solution for (1) satisfying the initial condition problem:
 
 \[u(x,0) = u_0(x)\]
@@ -17,14 +18,14 @@ Where $u_0(x)$ is a function of $x$. We'll start by defining the characteristic 
 
 \[
     \begin{cases}
-        \dot{x}(t) = u(x(t),x)\text{, }x(0) = x_0\\
+        \dot{x}(t) = u(x(t),t)\text{, }x(0) = x_0\\
         \dot{y}(t) = 1\text{, }y(0) = y_0
     \end{cases}
 \]
 
-Solely from that, we get $\dot{y} = t$. And now, by calculating the derivative of $u$ on the curves just defined, we obtain: 
+Solely from that, we get $y = t$. And now, by calculating the total derivative of $u$ on the curves just defined, we obtain: 
 
-\[\dv{u}{t}(x(t),t) = \pdv{u}{t} + \pdv{u}{x}\pdv{x}{t} = 0\]
+\[\dv{u}{t}(x(t),t) = \pdv{u}{t}\pdv{y}{t} + \pdv{u}{x}\pdv{x}{t} = u_t + u_xu = 0\]
 
 From this, two conclusions are made: $u$ is constant along the curve $(x(t),t)$, which implies that $\dot{x}(t) = u_0(x_0)$. By solving this last ODE, we conclude that:
 
@@ -39,8 +40,6 @@ Using the initial condition given by $u_0$, the characteristic curves are:
 %%INSERT
 
 We can clearly see that there are curves intersecting each other, so the value of $u(x,t)$ is not well-defined at the intersection points, therefore this cannot be a solution for our equation.
-
-\medskip
 
 Now, the question that rises is: "if that isn't a solution, then what is?". And that will motivate our next few chapters of functional analysis definitions and theorems, aiming to build a generalized perspective on what is a solution for a PDE.
 

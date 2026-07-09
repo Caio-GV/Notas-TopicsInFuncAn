@@ -5,8 +5,8 @@ Our main objective in this chapter is to make useful definitions to generalize t
 
 \section{The elements of $\testf$ and $\dist$}
 
-\begin{definition}{Test functions}
-    aLet $\Omega$ be a subset of $\mathbb{R}^n$. Then $\testf$ is the set of all $C^\infty$ functions defined on $\Omega$ with compact support. 
+\begin{definition}{Test functions}{test}
+    Let $\Omega$ be a subset of $\mathbb{R}^n$. Then $\testf$ is the set of all $C^\infty$ functions defined on $\Omega$ with compact support. 
 \end{definition}
 
 An example of such function is:
@@ -19,7 +19,7 @@ An example of such function is:
     \end{cases}
 \]
 
-For any $\varphi$ on this set and any locally integrable function $f:\mathbb{R}^n\rightarrow\mathbb{R}$, using integration by parts we get:
+And, for any $\varphi$ on this set and any locally integrable function $f:\mathbb{R}^n\rightarrow\mathbb{R}$, using integration by parts we get:
 
 \begin{equation}
     \int_{K}D^\alpha f\varphi = (-1)^{\left\lvert\alpha\right\rvert}\int_{K}fD^\alpha\varphi
@@ -33,28 +33,62 @@ Where $K\supseteq\text{supp}\varphi$ is a compact subset of $\Omega$ and $\alpha
 
 Now we can define the most important tool used in this endeavour:
 
-\begin{definition}{Distributions}
-    aA linear functional $T$ is said to be a distribution if for all sequences $\{\varphi_n\}_{n\in\mathbb{N}}$ in $\testf$ convergent to $\varphi$, the sequence $\{T\varphi_n\}_{n\in\mathbb{N}}$ converges to $T\varphi$ in $\testf$.
+\begin{definition}{Distributions}{dist}
+    A linear functional $T$ is said to be a distribution if for all sequences $\{\varphi_n\}_{n\in\mathbb{N}}$ in $\testf$ convergent to $\varphi$, the sequence $\{T\varphi_n\}_{n\in\mathbb{N}}$ converges to $T\varphi$ in $\testf$.
 \end{definition}
 
-We will use $\dist$ for the set of all distributions. Note that $\dist$ uses the same notation as the dual space of $\testf$ and that is no coincidence, as the distributions are precisely the dual elements of the test functions, as they are the linear functionals defined from $\testf$ to $\mathbb{R}$. Furthermore, it is worth to point that both $\testf$ and $\dist$ are vector spaces over $\mathbb{R}$.\\
+We will use $\dist$ for the set of all distributions. Note that $\dist$ uses the same notation as the dual space of $\testf$ and that is no coincidence, as the distributions are precisely the dual elements of the test functions, as they are the linear functionals defined from $\testf$ to $\mathbb{R}$. Furthermore, it is worth to point that both $\testf$ and $\dist$ are vector spaces over $\mathbb{R}$.
 
 Now, aiming for (2), we will define the following:
 
-\begin{definition}{Distribution given by a function}
-    aLet $f:\mathbb{R}^n\rightarrow\mathbb{R}$ be a locally integrable function, we say that the distribution given by $f$ is:
+\begin{definition}{Distribution given by a function}{dist_func}
+    Let $f:\mathbb{R}^n\rightarrow\mathbb{R}$ be a locally integrable function, we say that the distribution given by $f$ is:
 
     \[T_f(\varphi) = \int_{\Omega}f\varphi\]
     
 \end{definition}
 
-It is trivial to verify that $T_f$ is in fact a distribution, because as $\varphi_n\rightarrow\varphi$, $\int_{\Omega}f\varphi_n\rightarrow\int_{\Omega}f\varphi$.\\
+It is trivial to verify that $T_f$ is in fact a distribution, because as $\varphi_n\rightarrow\varphi$, $\int_{\Omega}f\varphi_n\rightarrow\int_{\Omega}f\varphi$.
+
 Another useful distribution is the Dirac "$\delta$-function", which is in fact a distribution given by:
-\begin{definition}{The Dirac distribution}
-    aFor any $\varphi\in\testf$:
+\begin{definition}{The Dirac distribution}{dirac}
+    For any $\varphi\in\testf$:
     \[\delta(\varphi)=\varphi(0)\]
 \end{definition}
 These both distributions will be essential for the next sections.
 
 \section{Distributional derivatives}
+Having (2) in mind, let's build a definition of a derivative that can satisfy that equation. Let $f$ be a smooth function in $\Omega$, so:
 
+\[D^{\alpha}Tf(\varphi) = D^{\alpha}\int_{\Omega}f\varphi\]
+
+Now, by the dominated convergence theorem we can push the derivative inside the integral, that is:
+
+\[D^{\alpha}\int_{\Omega}f\varphi = \int_{\Omega}D^{\alpha}f\varphi = (-1)^{\left\lvert\alpha\right\rvert}\int_{K}fD^\alpha\varphi\]
+
+So, we now know what we have to define $D^{\alpha}T$ as to serve our needs.
+
+\begin{definition}{Derivative of a distribution}{dist_derivative}
+    Let $T\in\dist$, the $\alpha$ derivative of $T$ is:
+    \[D^\alpha T(\varphi) = (-1)T(D^\alpha\varphi)\]
+\end{definition}
+
+Another important thing to note is that, for a distribution given by a function $f$, the following identity is verified:
+
+\[D^\alpha T_f(\varphi) = T_{D^\alpha f} = (-1)T_f(D^\alpha\varphi)\]
+
+In addition to that, we will say that a locally integrable function $f$ has a distributional derivative if there exists a distribution $G$ such that for all $\varphi\in\testf$:
+
+\[\dv{}{t}T_f(\varphi) = G(\varphi)\]
+
+So $G$ is the distributional derivative of $f$. If $G=T_g$ for some locally integrable function $g$, then we also say that $g$ is the distributional derivative of $f$. This distributional derivative is also what is called the weak derivative of $f$.
+
+It should be clear that if a function has a regular derivative, its weak derivative will be the same, as the identity above will be satisfied by:
+
+\[\dv{}{t}T_f = T_{\dv{f}{t}}\]
+
+
+\begin{example}{heav}
+    Le
+    
+\end{example}
