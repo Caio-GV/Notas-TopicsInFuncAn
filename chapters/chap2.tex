@@ -34,7 +34,7 @@ Where $K\supseteq\text{supp}\varphi$ is a compact subset of $\Omega$ and $\alpha
 Now we can define the most important tool used in this endeavour:
 
 \begin{definition}{Distributions}{dist}
-    A linear functional $T$ is said to be a distribution if for all sequences $\{\varphi_n\}_{n\in\mathbb{N}}$ in $\testf$ convergent to $\varphi$, the sequence $\{T\varphi_n\}_{n\in\mathbb{N}}$ converges to $T\varphi$ in $\testf$.
+    A linear functional $T$ is said to be a distribution if for all sequences $\{\varphi_n\}_{n\in\mathbb{N}}$ in $\testf$ convergent to some $\varphi$, the sequence $\{T\varphi_n\}_{n\in\mathbb{N}}$ converges to $T\varphi$ in $\testf$.
 \end{definition}
 
 We will use $\dist$ for the set of all distributions. Note that $\dist$ uses the same notation as the dual space of $\testf$ and that is no coincidence, as the distributions are precisely the dual elements of the test functions, as they are the linear functionals defined from $\testf$ to $\mathbb{R}$. Furthermore, it is worth to point that both $\testf$ and $\dist$ are vector spaces over $\mathbb{R}$.
@@ -55,7 +55,18 @@ Another useful distribution is the Dirac "$\delta$-function", which is in fact a
     For any $\varphi\in\testf$:
     \[\delta(\varphi)=\varphi(0)\]
 \end{definition}
-These both distributions will be essential for the next sections.
+Both distributions will be essential for the next sections.
+
+\subsection{Multiplication of a distribution by a function}
+
+From now on, we will use the notation $\cinf$ for the $C^\infty$ functions defined in $\Omega$. First, let $\{\varphi_n\}_{n\in\mathbb{N}}$ be a sequence of functions in $\testf$ converging to $\varphi$, notice that, for $\psi\in\cinf$, ${\{\psi\varphi_n\}_{n\in\mathbb{N}}}$ converges to $\varphi$. Additionally, as $\varphi_n$ has compact support, $\psi\varphi$ will also. Therefore, if $T$ is a distribution, the sequence ${\{T(\psi\varphi_n)\}_{n\in\mathbb{N}}}$ is convergent to $T(\psi\varphi)$. So:
+
+\[\psi T(\varphi) = T(\psi\varphi)\]
+defines a distribution.
+If $T$ is a distribution given by a function $f$, we get that:
+
+\[\psi T_f(\varphi) = T_f(\psi\varphi) = \int_{\Omega}f\psi\varphi = T_{f\psi}(\varphi)\]
+
 
 \section{Distributional derivatives}
 
@@ -114,5 +125,19 @@ So, by taking the derivative of this distribution and using \cref{lem:prop} we g
 Therefore, $\delta$ is the distributional derivative of the Heaviside function.
 
 \end{proof}
+
+\begin{example}{The derivatives of the $\delta$ distribution}{deltader}
+    For $\Omega\subseteq\mathbb{R}$ and $\varphi\in\testf$, using \cref{def:dist_derivative}, we get:
+    \[\delta^{(n)}(\varphi(x)) = (-1)^n\delta(\varphi^{(n)}(x)) = (-1)^n\varphi^{(n)}(x)\]
+    Where $\varphi^{(n)}$ is the $n$-nht derivative of $\varphi$.
+\end{example}
+
+\begin{proposition}{The derivative of a distribuition multiplied by a $\cinf$ function}{devmult}
+    By \cref{def:dist_derivative}:
+
+    \[D^\alpha(\psi T)(\varphi) = D^\alpha T(\psi\varphi) = (-1)^{\left\lvert\alpha\right\rvert}T(D^\alpha\psi\varphi) = (-1)^{\left\lvert\alpha\right\rvert}(D^\alpha\psi)T(\varphi)\]
+
+    
+\end{proposition}
 
 

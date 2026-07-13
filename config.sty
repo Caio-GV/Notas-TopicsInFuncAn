@@ -113,6 +113,15 @@ usepackage("bm");
 \BeforeBeginEnvironment{corollary}{\savenotes}
 \AfterEndEnvironment{corollary}{\spewnotes}
 
+%% corollaries style
+\NewTcbTheorem[number within=chapter]{proposition}{Proposition}{
+    colback=gray!5,
+    colframe=gray!60!black,
+    fonttitle=\bfseries,
+}{prop}
+\BeforeBeginEnvironment{corollary}{\savenotes}
+\AfterEndEnvironment{corollary}{\spewnotes}
+
 %% example style
 \NewTcbTheorem[number within=chapter]{example}{Example}{
     colback=gray!5,
@@ -124,4 +133,5 @@ usepackage("bm");
 
 
 \newcommand{\testf}{\mathscr{D}(\Omega)}
+\newcommand{\cinf}{\mathscr{E}(\Omega)}
 \newcommand{\dist}{\mathscr{D}'(\Omega)}
