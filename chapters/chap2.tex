@@ -57,6 +57,20 @@ Another useful distribution is the Dirac "$\delta$-function", which is in fact a
 \end{definition}
 Both distributions will be essential for the next sections.
 
+Lastly, we'll define the support of a distribution:
+
+\begin{definition}
+    The support of a distribution $T$ is the complement of the largest set in $\Omega$ in which for all test functions $T(\varphi) = 0$
+\end{definition}
+
+By this definition we can conclude that, if $T = T_f$ for some locally integrable function, then:
+
+\[\text{supp}(T_f)= \text{supp}(f)\]
+
+And for the Dirac $\delta$ distribution (also for all of its derivatives that will be defined):
+
+\[\text{supp}(\delta)= \{0\}\]
+
 \subsection{Multiplication of a distribution by a function}
 
 From now on, we will use the notation $\cinf$ for the $C^\infty$ functions defined in $\Omega$. First, let $\{\varphi_n\}_{n\in\mathbb{N}}$ be a sequence of functions in $\testf$ converging to $\varphi$, notice that, for $\psi\in\cinf$, ${\{\psi\varphi_n\}_{n\in\mathbb{N}}}$ converges to $\varphi$. Additionally, as $\varphi_n$ has compact support, $\psi\varphi$ will also. Therefore, if $T$ is a distribution, the sequence ${\{T(\psi\varphi_n)\}_{n\in\mathbb{N}}}$ is convergent to $T(\psi\varphi)$. So:
@@ -85,6 +99,21 @@ So, we now know what we have to define $D^{\alpha}T$ as to serve our needs. We l
     \[D^\alpha T(\varphi) = (-1)^{\left\lvert\alpha \right\rvert}T(D^\alpha\varphi)\]
 \end{definition}
 
+We need to verify that $D^\alpha T$ is also a distribution in $\dist$:
+
+\begin{theorem}{}{}
+    For $T\in\dist$ and any multi-index $\alpha$, $D^\alpha T$ is also in $\dist$.
+\end{theorem}
+
+\begin{proof}
+    Let $\{\varphi_n\}_{n\in\mathbb{N}}$ be a sequence of functions in $\testf$ converging to $\varphi$, then by the topology of $\testf$, $\{D^\alpha\varphi_n\}_{n\in\mathbb{N}}$ converges to $D^\alpha\varphi$. Additionally, have that $\{T(\varphi_n)\}_{n\in\mathbb{N}}$ converges to $T\varphi$, therefore, by \cref{def:dist_derivative}:
+
+    \[D^\alpha T(\varphi_n) = (-1)^{\left\lvert\alpha \right\rvert}T(D^\alpha\varphi_n)\]
+
+    Because $\{D^\alpha\varphi\}_{n\in\mathbb{N}}$ is a converging sequence, $\{T(D^\alpha\varphi_n)\}_{n\in\mathbb{N}}$ converges to $T(D^\alpha\varphi)$ and then $D^\alpha T\in\dist$.
+
+
+\end{proof}
 Another important thing to note is that, for a distribution given by a function $f$, the following identity is verified:
 
 \begin{lemma}{}{prop}
@@ -132,12 +161,44 @@ Therefore, $\delta$ is the distributional derivative of the Heaviside function.
     Where $\varphi^{(n)}$ is the $n$-nht derivative of $\varphi$.
 \end{example}
 
+We'll finish this section by giving some useful properties for the derivative of a distribution:
 \begin{proposition}{The derivative of a distribuition multiplied by a $\cinf$ function}{devmult}
     By \cref{def:dist_derivative}:
 
     \[D^\alpha(\psi T)(\varphi) = D^\alpha T(\psi\varphi) = (-1)^{\left\lvert\alpha\right\rvert}T(D^\alpha\psi\varphi) = (-1)^{\left\lvert\alpha\right\rvert}(D^\alpha\psi)T(\varphi)\]
-
     
 \end{proposition}
 
+\begin{theorem}{Leibniz formula for distributions}{leibniz}
+    For $\psi\in\cinf$, $T\in\dist$ and $\alpha$ a multi-index:
+
+    \[D^\alpha(\psi T) = \sum_{\beta\leq\alpha}\frac{\alpha!}{\beta!(\alpha-\beta)!}D^\beta\psi D^{\alpha-\beta}T\]
+
+\end{theorem}
+
+\section{Convolution of functions and distributions}
+
+Let's first remind ourselves of the definition of a convolution between two functions. For $f$,$g\in L_1(\mathbb{R}^n)$, the convolution of $f$ and $g$ is defined as:
+
+\[f\ast g(x) = \int_{\mathbb{R}^n} f(x-y)g(y)dy\]
+
+It is important also to point out that this operation is commutative and associative as to keep in mind what kind of operation we want to define for distributions. Also, there are some important theorems and lemmas for convolutions of functions that are useful to have at hand.
+
+\begin{theorem}{}{}
+    Let $f\in L^1(\mathbb{R}^n)$ and, for $1<p<+\infty$, $g\in L^p(\mathbb{R}^n)$. Then, $f\ast g$ is well-defined, $f\ast g\in L^p(\mathbb{R}^n)$ and:
+
+    \[\left\lVert f\ast g\right\rVert_{L^p(\mathbb{R}^n)}\leq\left\lVert f\right\rVert_{L^1(\mathbb{R}^n)}\left\lVert g\right\rVert_{L^p(\mathbb{R}^n)}\]
+    
+\end{theorem}
+
+\begin{lemma}{Young's inequality}{}
+    For $1\leq\ p,q,r\leq +\infty$ such that:
+
+    \[\frac{1}{p} + \frac{1}{q} = 1\]
+
+    Then, for $f\in L^p(\mathbb{R}^n)$ and $g\in L^q(\mathbb{R}^n)$, this inequality holds: 
+
+     \[\left\lVert f\ast g\right\rVert_{L^r(\mathbb{R}^n)}\leq\left\lVert f\right\rVert_{L^p(\mathbb{R}^n)}\left\lVert g\right\rVert_{L^q(\mathbb{R}^n)}\]
+
+\end{lemma}
 
