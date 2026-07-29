@@ -34,10 +34,10 @@ Where $K\supseteq\text{supp}\varphi$ is a compact subset of $\Omega$ and $\alpha
 Now we can define the most important tool used in this endeavour:
 
 \begin{definition}{Distributions}{dist}
-    A linear functional $T$ is said to be a distribution if for all sequences $\{\varphi_n\}_{n\in\mathbb{N}}$ in $\testf$ convergent to some $\varphi$, the sequence $\{T\varphi_n\}_{n\in\mathbb{N}}$ converges to $T\varphi$ in $\testf$.
+    A linear functional $T$ is said to be a distribution if for all sequences $\{\varphi_n\}_{n\in\mathbb{N}}$ in $\testf$ convergent to some $\varphi$, the sequence $\{T\varphi_n\}_{n\in\mathbb{N}}$ converges to $T\varphi$.
 \end{definition}
 
-We will use $\dist$ for the set of all distributions. Note that $\dist$ uses the same notation as the dual space of $\testf$ and that is no coincidence, as the distributions are precisely the dual elements of the test functions, as they are the linear functionals defined from $\testf$ to $\mathbb{R}$. Furthermore, it is worth to point that both $\testf$ and $\dist$ are vector spaces over $\mathbb{R}$.
+We will use $\dist$ for the set of all distributions. Note that $\dist$ uses the same notation as the dual space of $\testf$ and that is no coincidence, as the distributions are precisely the dual elements of the test functions, as they are the linear functionals defined from $\testf$ to $\mathbb{R}$. Furthermore, it is worth to point out that both $\testf$ and $\dist$ are vector spaces over $\mathbb{R}$.
 
 Now, aiming for (2), we will define the following:
 
@@ -201,4 +201,17 @@ It is important also to point out that this operation is commutative and associa
      \[\left\lVert f\ast g\right\rVert_{L^r(\mathbb{R}^n)}\leq\left\lVert f\right\rVert_{L^p(\mathbb{R}^n)}\left\lVert g\right\rVert_{L^q(\mathbb{R}^n)}\]
 
 \end{lemma}
+
+\begin{theorem}{}{}
+    Let $f$ and $g$ be continuous functions. If $g$ has compact support, then:
+
+    \[\text{supp}(f\ast g)\subset\text{supp}f + \text{supp}g\]
+
+    Where, for $A$ and $B$ sets in $\mathbb{R}^n$:
+
+    \[A+B=\{x+y|x\in A, y\in B\}.\]
+    
+\end{theorem}
+
+
 
