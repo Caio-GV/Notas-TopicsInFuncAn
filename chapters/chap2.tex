@@ -176,13 +176,15 @@ We'll finish this section by giving some useful properties for the derivative of
 
 \end{theorem}
 
-\section{Convolution of functions and distributions}
+\section{Convolutions}
+
+\subsection{Convolution of functions}
 
 Let's first remind ourselves of the definition of a convolution between two functions. For $f$,$g\in L_1(\mathbb{R}^n)$, the convolution of $f$ and $g$ is defined as:
 
 \[f\ast g(x) = \int_{\mathbb{R}^n} f(x-y)g(y)dy\]
 
-It is important also to point out that this operation is commutative and associative as to keep in mind what kind of operation we want to define for distributions. Also, there are some important theorems and lemmas for convolutions of functions that are useful to have at hand.
+It is also important to point out that convolution is a commutative and associative operation as to keep in mind what kind of operation we want to define for distributions. Also, there are some important theorems and lemmas for convolutions of functions that are useful to have at hand.
 
 \begin{theorem}{}{}
     Let $f\in L^1(\mathbb{R}^n)$ and, for $1<p<+\infty$, $g\in L^p(\mathbb{R}^n)$. Then, $f\ast g$ is well-defined, $f\ast g\in L^p(\mathbb{R}^n)$ and:
@@ -191,7 +193,7 @@ It is important also to point out that this operation is commutative and associa
     
 \end{theorem}
 
-\begin{lemma}{Young's inequality}{}
+\begin{lemma}{Young's inequality for convolutions}{}
     For $1\leq\ p,q,r\leq +\infty$ such that:
 
     \[\frac{1}{p} + \frac{1}{q} = 1\]
@@ -213,5 +215,44 @@ It is important also to point out that this operation is commutative and associa
     
 \end{theorem}
 
+And lastly:
 
+\begin{theorem}{}{}
+    Let $f$ be a continuous and $g$ continuous with compact support. If one of them is $C^\infty$ then $f\ast g$ is $C^\infty$.
+\end{theorem}
+
+All the proofs for these theorems can be found in chapter 1.5 of Topics in Functional Analysis and Applications.
+
+\subsection{Convolution of distributions}
+
+We want to define the convolution of a distribution and a test function to be such that the following equality holds. For $T_f$ a distribution given by a function and $\varphi\in\testf$:
+
+\begin{equation}
+    (T_f\ast\varphi)(x) = \int_{\Omega}f(x-y)\varphi(y)dy
+\end{equation}
+
+So now, let us first define some notation. Let $f$ be a function on $\mathbb{R}^n$ and $y\in\mathbb{R}^n$:
+
+\[\tau_xf(y) = f(y-x)\]
+\[\check{f}(y) = f(-y)\] 
+
+Then it follows that:
+
+\[\check{(\tau_x{f})}(y) = f(x-y) = \tau_{-x}\check{f}(y)\]
+\[\tau_x\tau_y = \tau_{x+y}\]
+
+For a distribution $T$, we need also to define:
+
+\[\tau_{x}T(\varphi) = T(\tau_{-x}\varphi)\text{, for all}\varphi\in\testf\]
+
+So finally:
+
+\begin{definition}{Convolution of a distribution and a test function}{}
+    Let $\Omega\subset\mathbb{R}^n$, $T\in\dist$ and $\varphi\in\testf$. Then we define:
+
+    \[(T\ast\varphi)(x) = T(\tau_{-x}\varphi)\]
+
+\end{definition}
+
+It is easy to notice that this definition satisfies $(3)$. Then we can derive some properties out of this definition:
 
