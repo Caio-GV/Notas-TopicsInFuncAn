@@ -243,16 +243,63 @@ Then it follows that:
 
 For a distribution $T$, we need also to define:
 
-\[\tau_{x}T(\varphi) = T(\tau_{-x}\varphi)\text{, for all}\varphi\in\testf\]
+\[\tau_{x}T(\varphi) = T(\tau_{-x}\varphi)\text{, for all }\varphi\in\testf\]
 
 So finally:
 
 \begin{definition}{Convolution of a distribution and a test function}{}
     Let $\Omega\subset\mathbb{R}^n$, $T\in\dist$ and $\varphi\in\testf$. Then we define:
 
-    \[(T\ast\varphi)(x) = T(\tau_{-x}\varphi)\]
+    \[(T\ast\varphi)(x) = T(\tau_{-x}\check{\varphi})\]
 
 \end{definition}
 
 It is easy to notice that this definition satisfies $(3)$. Then we can derive some properties out of this definition:
+
+\begin{proposition}{}{}
+    \begin{enumerate}
+        \item For any $x\in\mathbb{R}^n$, 
+        
+            \[\tau_x(T\ast\varphi)=(\tau_xT)\ast\varphi=T\ast(\tau_x\varphi)\]
+    
+        \item For $\alpha$ a multi-index,
+        
+            \[D^\alpha(T\ast\varphi)=(D^\alpha T)\ast\varphi = T\ast(D^\alpha\varphi)\]
+
+            Then, $(T\ast\varphi)\in\cinf$
+        
+        \item For $\psi\in\testf$, then,
+        
+            \[T\ast(\varphi\ast\psi)=(T\ast\varphi)\ast\psi\]
+
+        \item Let $T\in\dist$ such that $T\ast\varphi=0$ for all $\varphi\in\testf$. Then, $T=0$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item By definition: 
+        
+        \[\tau_x(T\ast\varphi)(y)=(T\ast\varphi)(y-x)=T(\tau_{y-x}\check{\varphi})\]
+        \[=T(\tau_{-x}\tau_{y}\check{\varphi})=(\tau_xT)(\tau_{y}\check{\varphi})=(\tau_xT)\ast\varphi(y)\]
+        \[=T(\tau_y\check{(\tau_x\varphi)}) = (T\ast\tau_x\varphi)(y)\]
+
+        \item It is sufficient to prove this only for the multi-index $\alpha=(0,\dots,1,\dots,0)$, where $\alpha_i=0$ for all $i\neq k$ and $\alpha_k = 1$. Then, for $e_k$ the $k$-th standard basic vector of $\mathbb{R}^n$:
+        
+        \[\pdv{}{x_k}(T\ast\varphi) = \lim_{h\rightarrow0}\frac{1}{h}(T\ast\varphi)(x)-(T\ast\varphi)(x-he_k)\]
+        \[=\lim_{h\rightarrow0}\frac{1}{h}(T\ast\varphi)(x)-\tau_{he_k}(T\ast\varphi)(x)\]
+        \[\text{By 1. ,}v(T\ast\varphi)(x)-T\ast(\tau_{he_k}\varphi)(x) \]
+        \[=\lim_{h\rightarrow0}\frac{1}{h}T\ast(\varphi-\tau_{he_k}\varphi)(x)\]
+        \[=\lim_{h\rightarrow0}T\ast\bigg(\frac{\varphi-\tau_{he_k}\varphi}{h}\bigg)(x)\]
+        \[=\lim_{h\rightarrow0}T\bigg(\tau_x\bigg(\frac{\varphi-\tau_{he_k}\varphi}{h}\bigg)^\vee\bigg)\]
+        \[=T\bigg(\tau_x\pdv{\varphi}{x_k}\bigg)^\vee = T\ast\bigg(\pdv{\varphi}{x_k}\bigg)\]
+
+        Then, by iteration, it follows for any multi-index.
+
+        (To be completed\dots)
+    \end{enumerate}
+\end{proof}
+
+We must now
+
 
