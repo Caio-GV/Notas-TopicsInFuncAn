@@ -59,7 +59,7 @@ Both distributions will be essential for the next sections.
 
 Lastly, we'll define the support of a distribution:
 
-\begin{definition}
+\begin{definition}{The support of a distribution}{supp}
     The support of a distribution $T$ is the complement of the largest set in $\Omega$ in which for all test functions $T(\varphi) = 0$
 \end{definition}
 
@@ -81,12 +81,11 @@ If $T$ is a distribution given by a function $f$, we get that:
 
 \[\psi T_f(\varphi) = T_f(\psi\varphi) = \int_{\Omega}f\psi\varphi = T_{f\psi}(\varphi)\]
 
-
 \section{Distributional derivatives}
 
 Having (2) in mind, let's build a definition of a distribution derivative that can satisfy that equation. Let $f$ be a smooth function in $\Omega$, so:
 
-\[D^{\alpha}Tf(\varphi) = D^{\alpha}\int_{\Omega}f\varphi\]
+\[D^{\alpha}T_f(\varphi) = D^{\alpha}\int_{\Omega}f\varphi\]
 
 Now, by the dominated convergence theorem we can push the derivative inside the integral, that is:
 
@@ -176,6 +175,7 @@ We'll finish this section by giving some useful properties for the derivative of
 
 \end{theorem}
 
+
 \section{Convolutions}
 
 \subsection{Convolution of functions}
@@ -250,7 +250,7 @@ So finally:
 \begin{definition}{Convolution of a distribution and a test function}{}
     Let $\Omega\subset\mathbb{R}^n$, $T\in\dist$ and $\varphi\in\testf$. Then we define:
 
-    \[(T\ast\varphi)(x) = T(\tau_{-x}\check{\varphi})\]
+    \[(T\ast\varphi)(x) = T(\tau_{x}\check{\varphi})\]
 
 \end{definition}
 
@@ -288,7 +288,7 @@ It is easy to notice that this definition satisfies $(3)$. Then we can derive so
         
         \[\pdv{}{x_k}(T\ast\varphi) = \lim_{h\rightarrow0}\frac{1}{h}(T\ast\varphi)(x)-(T\ast\varphi)(x-he_k)\]
         \[=\lim_{h\rightarrow0}\frac{1}{h}(T\ast\varphi)(x)-\tau_{he_k}(T\ast\varphi)(x)\]
-        \[\text{By 1. ,}v(T\ast\varphi)(x)-T\ast(\tau_{he_k}\varphi)(x) \]
+        \[\text{By 1. , }  =\lim_{h\rightarrow0}(T\ast\varphi)(x)-T\ast(\tau_{he_k}\varphi)(x) \]
         \[=\lim_{h\rightarrow0}\frac{1}{h}T\ast(\varphi-\tau_{he_k}\varphi)(x)\]
         \[=\lim_{h\rightarrow0}T\ast\bigg(\frac{\varphi-\tau_{he_k}\varphi}{h}\bigg)(x)\]
         \[=\lim_{h\rightarrow0}T\bigg(\tau_x\bigg(\frac{\varphi-\tau_{he_k}\varphi}{h}\bigg)^\vee\bigg)\]
@@ -300,6 +300,28 @@ It is easy to notice that this definition satisfies $(3)$. Then we can derive so
     \end{enumerate}
 \end{proof}
 
-We must now
+\begin{lemma}{$\testf$ is invariant by convolution with the $\delta$-distribution}{}
+    Let $\varphi\in\testf$, then:
+
+    \[\delta\ast\varphi(x) = \varphi(x)\]
+
+\end{lemma}
+\begin{proof}
+    Simply by computation:
+
+    \[\delta\ast\varphi(x) = \delta(\tau_x\check{\varphi}) = \delta(\varphi(x-y)) = \varphi(x-0) = \varphi(x)\]
+
+\end{proof}
+
+\subsection{Convolution between two distributions}
+
+\begin{definition}{Convolution between two distributions}{convdist}
+    Let $T,G\in\dist$, $G$ with compact support, then we define:
+
+    \[T\ast G(\varphi) = T\ast(G\ast\varphi)\]
+\end{definition}
+
+
+
 
 
